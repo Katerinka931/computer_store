@@ -32,7 +32,7 @@ public class ProductService {
     public ProductPojo editProduct(ProductPojo pojo, long id) {
         Optional<Product> optionalProduct = productRepository.findById(id);
         if (optionalProduct.isPresent()) {
-            String cls = optionalProduct.get().getClass().getSimpleName().toLowerCase(Locale.ROOT);
+            String cls = optionalProduct.get().getClass().getSimpleName();
             ProductType type = storeFactory.getProductTypeByClassName(Utils.getShortClassNameByPojoClass(cls));
             Product product = optionalProduct.get();
             product = storeFactory.editProductParameter(type, pojo, product);
@@ -52,7 +52,7 @@ public class ProductService {
     public ProductPojo findById(long id) {
         Optional<Product> optionalProduct = productRepository.findById(id);
         if (optionalProduct.isPresent()) {
-            String cls = optionalProduct.get().getClass().getSimpleName().toLowerCase(Locale.ROOT);
+            String cls = optionalProduct.get().getClass().getSimpleName();
             ProductType type = storeFactory.getProductTypeByClassName(Utils.getShortClassNameByPojoClass(cls));
             Product product = optionalProduct.get();
             return storeFactory.createPojo(type, product);
